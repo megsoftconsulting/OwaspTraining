@@ -1,0 +1,66 @@
+@model IEnumerable<Day01.Models.OrdersViewModel>
+@{
+    ViewData["Title"] = "Productos (Doomsday Scenario)";
+}
+
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <p>En este ejemplo procederemos a realizar un ataque de inyecci&oacute;n de SQL para intentar agregar una tabla llamada <i>TEST</i>, usando la siguiente instrucci&oacute;n:</p>
+    <pre>mac%'; CREATE TABLE TEST (COLUMNA_PRUEBA nvarchar(50));--</pre>
+    <p>La instrucci&oacute;n permitir&aacute; realizar la consulta con la palabra "mac" y luego insertara la tabla TEST en la base de datos. De esta manera, el usuario el cual se esta usando para la conexi&oacute;n de base de datos, tiene permisos DDL. </p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <label class="col-md-4" for="searchParams">Busqueda</label>
+        <input class="col-md-8" name="search" id="searchParams"/>
+    </div>
+    <input class="col-md-1" type="button" onclick="getOrders()" value="Filtrar"/>
+</div>
+<div class="row">
+    <table class="table" id="resultsTable">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr scope="row">
+                <td>@item.Name</td>
+                <td>@item.Type</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <p>@ViewData["Message"]</p>
+    </div>
+</div>
+
+<script>
+    
+    function getOrders() {
+        var productName = $('#searchParams').val();
+        $.ajax({
+            url: '/Home/GetOffers?name='+productName,
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function(response) {
+                var html = '';
+                for (var i = 0; i < response.length; i++) {
+                    html += '<tr scope="row"><td>'+response[i].name+'</td><td>'+response[i].type+'</td></tr>';
+                }
+                $('#resultsTable > tbody').html(html);
+            },
+            failure: function(response) {
+
+            }
+        });
+    }
+</script>

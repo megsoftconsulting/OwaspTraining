@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Hijacking";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+@if(SignInManager.IsSignedIn(User))
+{
+    <div class="row">
+        <p><i><b>NOTA:</b> Para este ejemplo se necesitan dos browsers o una ventana en incognito (se recomienda Firefox)</i></p>
+        <p>Para este ejemplo, ingresa la siguiente cookie en el segundo navegador:</p>
+        <pre>Cookie: .AspNetCore.Identity.Application<br />Value: @(Context.Request.Cookies[".AspNetCore.Identity.Application"].ToString())</pre>
+        <p>
+            Imagina lo siguiente: Un atacante ha logrado inyectar un script en esta página para enviar la información de la sesión a una base de datos. 
+            De esta maneras el atacante puede acceder a la sesión sin ninguna restricción.
+        </p>
+    </div>
+}
+else
+{
+    <div class="row">
+        Para ingresar a esta sección, primero debes <a asp-area="Identity" asp-page="/Account/Register">Registrarte</a> o 
+        hacer <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </div>
+}

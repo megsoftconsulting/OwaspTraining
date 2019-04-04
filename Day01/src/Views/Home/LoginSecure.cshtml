@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Login Secure";
+}
+
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <p>En este ejemplo procedemos a realizar una injeccion que permite al atacante poder realizar un login exitoso sin necesidad de la informacion completa del usuario. Para esto usaremos el usuario admin y usaremos la siguiente instrauccion:</p>
+    <pre>' OR 1=1;--</pre>
+    <p>La anterior injeccion no se ejecutara ya que el parametro es pre evaluado antes de ejecutarse y SQLCommand no permitira ejecutarlo al detectar que es invalida.</p>
+</div>
+<div class="row">
+    <form asp-action="LoginSecure" method="post">
+        <div class="col-md-3">
+            <label>User</label>
+            <input autocomplete="off" name="user" />
+        </div>
+        <div class="col-md-3">
+            <label>Password</label>
+            <input autocomplete="off" name="password" type="text" />
+        </div>
+        <div class="col-md-3">
+            <input type="submit" />
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <p>@ViewData["Message"]</p>
+    </div>
+</div>

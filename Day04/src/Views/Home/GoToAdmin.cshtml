@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Ir a Administración";
+}
+
+<div class="row">
+    <h3>@ViewData["Title"]</h3>
+</div>
+
+<div class="row">
+    <p>Al momento que entraste a esta página, se ha seteado una cookie llamada <i>IsAdmin</i> con valor de 0. 
+        Si accedemos al enlace de "Ir a administración" en esta página, nos retornara un error que no podemos acceder a ese recurso.
+        Para poder acceder, cambiaremos esta (al valor de "1") cookie para poder acceder a esa area. </p>
+</div>
+
+<div class="row">
+    <a asp-controller="Home" asp-action="Admin">Ir a administración</a>
+</div>
+
+@if (ViewData.ContainsKey("ErrorMessage"))
+{
+    <div class="row alert-danger">
+        <p>El area que deseaste acceder es unicamente para administradores</p>
+    </div>
+}

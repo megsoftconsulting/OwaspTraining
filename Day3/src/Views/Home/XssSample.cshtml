@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "XSS Sample";
+}
+<h3>@ViewData["Title"]</h3>
+<div class="row">
+    <p>En este ejemplo se ha aplicado Encoding al parametro "comment" que es enviado al servidor. Ingresa el siguiente script en el campo de texto:</p>
+    <pre>&lt;script&gt;alert("Hola mundo");&lt;/script&gt;</pre>
+    <p>El server retornara el texto sin encoding lo que significa que el navegador lo insertara como parte del DOM y mostrara el alert en el navegador.</p>
+</div>
+<div class="row">
+    <form asp-action="XssSample" method="get">
+        <div class="form-group">
+            <label for="comment" class="control-label">Comment</label>
+            <input class="form-control" id="comment" name="comment" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+    @if (!string.IsNullOrEmpty(ViewBag.Comment))
+    {
+        <div class="row">
+            <div class="col-xs-12">
+                <!--<b>Text sent: "@ViewBag.Comment"</b>-->
+            </div>
+        </div>
+    }
+</div>
+
+
+@section scripts
+    {
+    <script>
+
+            var miVariable = "@Html.Raw(ViewBag.Comment)";
+
+    </script>
+}

@@ -1,0 +1,40 @@
+@model IEnumerable<Day02.Models.Product>
+@{
+    ViewData["Title"] = "Products";
+}
+
+
+<h2>@ViewData["Title"]</h2>
+<h3>Product Catalog</h3>
+@if (Model.Any())
+{
+    <h4>These are your products @Model.FirstOrDefault()?.Owner</h4>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr scope="row">
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <p>@ViewData["Message"]</p>
+        </div>
+    </div>
+}
+else
+{
+    <h4>No Products to Show</h4>
+}

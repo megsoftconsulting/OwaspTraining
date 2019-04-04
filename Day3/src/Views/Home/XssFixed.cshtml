@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Ejemplo XSS (Fixed)";
+}
+<h3>@ViewData["Title"]</h3>
+<div class="row">
+    <p>En este ejemplo se ha aplicado Encoding al parametro "comment" que es enviado al servidor. Ingresa el siguiente script en el campo de texto:</p>
+    <pre>&lt;script&gt;alert("Hola mundo");&lt;/script&gt;</pre>
+    <p>Gracias al encoding aplicado al parametro que es enviado al server, se mostrara el texto plano sin inyección al DOM de la página.</p>
+</div>
+<div class="row">
+    <form asp-action="XssFixed" method="get">
+        <div class="form-group">
+            <label for="comment" class="control-label">Comment</label>
+            <input class="form-control" id="comment" name="comment"/>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit"/>
+        </div>
+    </form>
+    @if (!string.IsNullOrEmpty(ViewBag.Comment))
+    {
+        <div class="row">
+            <div class="col-xs-12">
+                <b>Text sent: "@Html.Raw(ViewBag.Comment)"</b>
+            </div>
+        </div>
+    }
+</div>

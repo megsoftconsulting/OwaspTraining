@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <form asp-action="QueryStrings" method="get">
+        <div class="col-md-3">
+            <label>User</label>
+            <input name="user" />
+        </div>
+        <div class="col-md-3">
+            <label>Password</label>
+            <input name="password" type="text" />
+        </div>
+        <div class="col-md-3">
+            <input type="submit" />
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <p>@ViewData["Message"]</p>
+    </div>
+</div>

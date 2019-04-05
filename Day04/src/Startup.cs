@@ -59,7 +59,6 @@ namespace Day04
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 0;
                 options.Password.RequiredUniqueChars = 0;
-
                 // Lockout settings.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;

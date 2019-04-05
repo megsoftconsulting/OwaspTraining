@@ -58,6 +58,7 @@ namespace Day04.Controllers
 
         public IActionResult Hijacking()
         {
+
             return View(); 
         }
 

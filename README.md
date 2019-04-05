@@ -1,6 +1,6 @@
-# OwaspTraining
+# OWASP Training March 2019
 
-Collection of examples and labs for the megsoft OWASP course.
+Collection of examples and labs for the megsoft OWASP training.
 
 Authors:
 

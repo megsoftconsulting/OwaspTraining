@@ -1,0 +1,51 @@
+@model Day05.Data.ApplicationUser
+@{
+    ViewData["Title"] = "Ventas";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h3>Ventas de @Model.UserName</h3>
+<p>En este ejmemplo, Las ventas son mostradas segun el usuario ingresado. De esta manera, únicamente el usuario puede ver sus propios elementos</p>
+<br />
+<div class="row">
+    @if (Model.Sales.Any())
+    {
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <td>Id</td>
+                <td>Cliente</td>
+                <td>Código de Factura</td>
+                <td>Monto</td>
+                <td>Fecha Facturado</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Sales)
+            {
+                <tr>
+                    <td>
+                        @item.SaleId
+                    </td>
+                    <td>
+                        @item.CustomerName
+                    </td>
+                    <td>
+                        @item.InvoiceCode
+                    </td>
+                    <td>
+                        USD $@item.Amount.ToString("N")
+                    </td>
+                    <td>
+                        @item.CreatedAt.ToString("D")
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h4>Este usuario no tiene ventas</h4>
+    }
+</div>

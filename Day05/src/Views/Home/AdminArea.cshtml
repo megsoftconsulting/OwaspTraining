@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Admin Area";
+}
+
+<h2>Este es un area de Adminitrador</h2>
+
+<p>Aquí podría haber información sensible que solo el administrador debería de ver; pero en cambio, estamos mostrando esta información 
+    a todo aquel usuario que este autenticado en el sistema.</p>
+    
+<p>Este controlador usa un atributo llamado <i>Authorize</i> que verifica si el usuario esta autenticado en el sistema. 
+    En primera instancia, estamos protegiendo esta area de instrusos externos pero estamos dejando que otros usuarios accedan al mismo.</p>
+    
+<p>La manera adecuada de mostrar areas sensibles o seprarar ciertas areas del sistema es haciendo un buen uso de roles, por ejemplo:</p>
+<code>[Authorize(Roles = "AdminRoleName")]</code>
+
+<p>En el siguiente ejemplo, podemos observar un mejor uso de este atributo.</p>
+
+<a class="btn btn-info" asp-controller="Admin" asp-action="Users">Ir a Control de Usuarios</a>

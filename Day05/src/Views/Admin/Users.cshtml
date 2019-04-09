@@ -1,0 +1,52 @@
+@model IEnumerable<Day05.Data.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Usuarios del Sistema";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>Este controller debería de ser visualizado unicamente por usuarios autenticados y por administradores. Esto es se define de la siguiente manera:</p>
+<pre>[Authorize(Roles = "Administrador")]
+public class AdminController : Controller { // TODO Your Controller Here }</pre>
+
+<p>Sin embargo, todos los usuarios han sido asignados al rol de Administrador, por lo que todos podrán ver esta area. 
+    Unicamente admin deberia poder visualizar esta sección.</p>
+@*<div class="row">
+    <a class="btn btn-info col-lg-2 pull-right" asp-action="AddRole">Agregar Rol</a>
+</div>*@
+<br />
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td style="width: 30%">Id</td>
+            <td>Usuario</td>
+            <td style="width: 10%">Acciones</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(item.Id)
+                </td>
+                <td>
+                    @(item.Email)
+                </td>
+                <td>
+                    @if (item.Email != "admin@megsoftconsulting.com")
+                    {
+                        <a title="Agregar roles" class="btn btn-info center-block" href="@Url.Action("AssignRole", "Admin", new {id = item.Id})"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                    }
+                    else
+                    {
+                        <i>Usuario admin no puede ser modificado</i>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

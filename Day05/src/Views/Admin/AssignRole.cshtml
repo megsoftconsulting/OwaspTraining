@@ -1,0 +1,33 @@
+@model Day05.Models.UserRoleViewModel
+@{
+    ViewData["Title"] = "Asignar Roles";
+}
+<h2>@ViewData["Title"]</h2>
+<form asp-controller="Admin" asp-action="AssignRole" method="post" class="form-horizontal" role="form">
+    <h3>Asignar los roles para @Model.Email</h3>
+    <p>Esta area es para asignar y quitar roles a un usuario. Por defecto, todos los usuarios son administradores.
+        Sin embargo, esto es una mala pratica, ya que hay usuarios que no deberian tener acceso a ciertas areas del sistema (como esta area por ejemplo).</p>
+    <p>En ASP.NET Core, usando Identity Framework, los roles son asignados a cada usuario por medio de la tabla AspNetUserRoles, y para asignar nuevos roles debemos ingresar:</p>
+    <pre>dbContext.UserRoles.Add(new UserRole( RoleId = "{YourRoleId}", UserId = "{YourUserId}"))</pre>
+    
+    <p><i>Nota: este ejemplo esta usando Entity Framework Core para acceder a la base de datos. Revisa este 
+        <a target="_blank" href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/customize-identity-model?view=aspnetcore-2.2">link</a> 
+        donde habla más sobre EF Core y Usuarios / Roles</i></p>
+    <div class="row">
+        <fieldset class="form-group">
+            <input type="hidden" asp-for="@Model.UserId"/>
+            @{
+                for (var i = 0; i < Model.RoleViewModels.Count(); i++)
+                {
+                    <div class="checkbox col-sm-9">
+                        <input class="form-control" asp-for="@Model.RoleViewModels[i].Selected"/>
+                        <label asp-for="@Model.RoleViewModels[i].RoleId">@Model.RoleViewModels[i].Name</label>
+                        <input asp-for="@Model.RoleViewModels[i].RoleId" type="hidden"/>
+                    </div>
+                }
+            }
+        </fieldset>
+    </div>
+    <input type="submit" class="btn btn-info" value="Agregar"/>
+    <a asp-controller="Admin" asp-action="Users" class="btn btn-info">Regresar</a>
+</form>

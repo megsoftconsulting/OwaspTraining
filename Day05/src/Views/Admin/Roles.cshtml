@@ -1,0 +1,35 @@
+@model IEnumerable<Day05.Data.ApplicationRole>
+
+@{
+    ViewData["Title"] = "Roles del Sistema";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <a class="btn btn-info col-lg-2 pull-right" asp-action="AddRole">Agregar Rol</a>
+</div>
+<br />
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td style="width: 30%">Id</td>
+            <td>Name</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(item.Id)
+                </td>
+                <td>
+                    @(item.Name)
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

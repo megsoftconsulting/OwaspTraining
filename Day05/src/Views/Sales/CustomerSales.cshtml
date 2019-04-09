@@ -1,0 +1,56 @@
+@model Day05.Data.ApplicationUser
+@{
+    ViewData["Title"] = "Ventas";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h3>Ventas de @Model.UserName</h3>
+<p>En este ejmemplo, podemos ver las ventas de el usuario con el Id ingresado como parte de la ruta de la URL.</p>
+<p>Como no existe una validación de acceso a estas ventas, podemos probar con los siguientes ID's:</p>
+<pre>
+3029cec5-2b5e-4913-9e59-35e8ce35306d
+7c9bdb25-5472-4be8-918e-55c0a86e6b71
+</pre>
+<br />
+<div class="row">
+    @if (Model.Sales.Any())
+    {
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <td>Id</td>
+                <td>Cliente</td>
+                <td>Código de Factura</td>
+                <td>Monto</td>
+                <td>Fecha Facturado</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Sales)
+            {
+                <tr>
+                    <td>
+                        @item.SaleId
+                    </td>
+                    <td>
+                        @item.CustomerName
+                    </td>
+                    <td>
+                        @item.InvoiceCode
+                    </td>
+                    <td>
+                        USD $@item.Amount.ToString("N")
+                    </td>
+                    <td>
+                        @item.CreatedAt.ToString("D")
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h4>Este usuario no tiene ventas</h4>
+    }
+</div>

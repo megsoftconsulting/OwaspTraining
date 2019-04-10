@@ -1,20 +1,32 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Day 05:  Access Level Control
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Default data in this lab
+### Users
+**Admin User**: admin@megsoftconsulting.com
+**Password:** 12345678
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+### Roles
+- Administrador
+- Ventas
+- Usuario
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Admin area with roles
+We are taking the "Go to Admin area" sample to the next level. Now, We are not using cookies but instead a real authentication method to let know the user that the user must have authentication access.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+The page "Admin Area" will only have the Authorize attribute set in the controller. This will allow any user authenticated in the page to access this area (which is not supposed to happen). Let's see another bad role management.
+
+## Users controls (Role access level)
+Let's use the "Control de Usuarios" page. This will tell the user that he is allowed to see the page but is supposed to be only for admin role. Surprise, by default the users are being registered as Admin. We can change this per user in the database.
+
+Let's change a few users their roles to see their changes. 
+
+By default, "admin@megsoftconsulting.com" has all the roles. 
+
+## Ventas (exposing object references)
+_Note: To access this page, the user must be authenticated and have either "Administrador" or "Ventas" role_
+
+The last section is a simple Sales page (based from the Assets ownership from the first lab). This time, the user must be authenticated to see the page. In the URL route, there is the user id (used to search the Sales). 
+
+If the user change this id to another one, the page will not restrict this and will assume that the request is being made by the owner of the assets. If the user id does not have sales, it will show a not found message. If the user does not exists, it will redirect to home.
+
+The "Ventas a Clientes (Fixed)" page, it takes the current user logged in, with the "Ventas" role assigned to display the sales. It does not accept an ID in the route as a parameter. It will only show the current user's sales. You can use admin and ventas user for this example.

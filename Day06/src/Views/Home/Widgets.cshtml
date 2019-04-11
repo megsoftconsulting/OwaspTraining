@@ -1,0 +1,56 @@
+@model IEnumerable<Day06.Models.WidgetViewModel>
+@{
+    ViewData["Title"] = "Widgets";
+}
+
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    En este ejemplo, haremos que esta página nos arroje una excepción. 
+    En la URL podemos ver que se esta pasando como parametro un categoryId=3.  
+</p>
+<p>
+    Probaremos dos escenarios:
+</p>
+<pre>categoryId=x
+- y - 
+categoryId=30000000000
+</pre>
+<p>
+    En ambos escenarios podremos observar que nos arrojara información de la excepción. 
+    En este momento no nos muestra mucha información. Veamos otro escenario en <a asp-controller="Home" asp-action="WidgetsWorse" asp-route-categoryId="3">aquí</a>
+</p>
+    
+@if (Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>
+                Nombre
+            </td>
+            <td>
+                Categoria
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.CategoryId
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4>Sin elementos a mostrar</h4>
+}

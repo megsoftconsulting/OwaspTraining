@@ -1,0 +1,58 @@
+@model IEnumerable<Day06.Models.WidgetViewModel>
+@{
+    ViewData["Title"] = "Widgets";
+}
+
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    En este ejemplo, haremos que esta página nos arroje una excepción. 
+    En la URL podemos ver que se esta pasando como parametro un categoryId=3.  
+</p>
+<p>
+    Probaremos dos escenarios:
+</p>
+<pre>categoryId=x
+- y - 
+categoryId=30000000000
+</pre>
+<p>
+    En este escenario hay una pequeña diferencia: el programador anterior (el cúal fue despedido) esta pasando el categoryId como Int64 (algo muy inusual).
+    Si pasamos x como parametro, la excepción  nos arrojara muy poca información, sin embargo al pasar un número grande, nos arrojara ahora datos de la conexión. 
+    Ya que el tipo de dato en el SqlParameter es Int, nos arroja la excepción al momento de ejecutar el comando de SQL (ahora sabemos más de como funciona esta página). 
+    Veamos un peor escenario en <a asp-controller="Home" asp-action="WidgetsWorst" asp-route-categoryId="3">aquí</a>
+</p>  
+    
+@if (Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>
+                Nombre
+            </td>
+            <td>
+                Categoria
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.CategoryId
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4>Sin elementos a mostrar</h4>
+}

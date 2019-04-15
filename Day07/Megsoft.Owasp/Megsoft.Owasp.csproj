@@ -13,10 +13,7 @@
     <NoWarn>1701;1702</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Class1.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.4" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
   </ItemGroup>
 </Project>

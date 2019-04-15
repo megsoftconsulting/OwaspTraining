@@ -35,7 +35,6 @@ namespace Day05.Controllers
             return View();
         }
 
-        [Authorize]
         public IActionResult AdminArea()
         {
             return View();

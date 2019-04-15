@@ -1,0 +1,34 @@
+@using Megsoft.Owasp
+@{
+    ViewData["Title"] = "Usando un componente de terceros";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>Estamos usando un componente que permite usar un BaseController para nuestra página. 
+    Este componente tiene una utilidad que nos retorna un pequeño mensaje.</p>
+
+<pre>
+
+Accediendo a Tools.ShowInformation()
+@Tools.ShowInformation()
+
+</pre>
+
+<p>Si llevamos el caso más allá, el Controller que se esta usando de este componente, 
+    intercepta nuestro archivo de configuración y muestra nuestro ConnectionString (asuminendo que estas usando el nombre por defecto).</p>
+<pre>
+Connection String de este sitio web:
+@ViewData["YOURDATA"]
+</pre>
+
+O incluso, la configuración completa:
+<pre>
+
+@ViewData["CONFIGURATION"]
+
+</pre>
+
+<br />
+
+<p>Si el atacante puede acceder a esta información, fácilmente la puede inyectar en una Cookie sin que el developer se de cuenta.</p>

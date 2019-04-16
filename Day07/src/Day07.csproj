@@ -5,9 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Megsoft.Owasp" Version="1.1.1" />
-        <PackageReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.4" PrivateAssets="All" />
+      <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.4" />
+      <PackageReference Include="Megsoft.Owasp" Version="1.1.1" />
     </ItemGroup>
-
 </Project>

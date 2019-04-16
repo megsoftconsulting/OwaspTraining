@@ -35,10 +35,10 @@ namespace Day05
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+                options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             // If you want to use SQL Server, Define ConnectionStrings on appsettings.json and add your ConnectionName
-            // The user the follow lines to Use SqlServer
+            // then use the follow lines to Use SqlServer
             //services.AddDbContext<ApplicationDbContext>(options =>
                 //options.UseSqlServer(
                     //Configuration.GetConnectionString("DefaultConnection")));

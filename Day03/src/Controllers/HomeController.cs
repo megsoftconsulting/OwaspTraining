@@ -17,7 +17,7 @@ namespace Day03.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("XssSample");
         }
 
         public IActionResult XssSample(string comment = "")

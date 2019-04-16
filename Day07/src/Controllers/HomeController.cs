@@ -10,7 +10,7 @@ namespace Day07.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("ShowNuget");
         }
 
         public IActionResult ShowNuget()

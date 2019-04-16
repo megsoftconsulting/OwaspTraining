@@ -19,7 +19,7 @@ namespace Day01.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Login");
         }
 
         [HttpGet]

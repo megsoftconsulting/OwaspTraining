@@ -12,7 +12,7 @@ namespace Day04.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("GoToAdmin");
         }
 
         public IActionResult About()

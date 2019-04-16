@@ -18,7 +18,7 @@ namespace Day08.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("RedirectSample");
         }
 
         public IActionResult RedirectSample()

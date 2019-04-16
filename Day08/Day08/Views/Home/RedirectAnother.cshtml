@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Links";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <p>En este ejemplo, tenemos 3 links los cuales pasan por una página de Redirect. 
+        En este caso, el controller verificara si en el Request este incluye un header llamado "Referrer".</p>
+    <p>Basicamente, verificaremos que este no venga null (que venga algun cliente o de la accion del usuario), si este es el caso, luego verificara que este referrer viene de nuestro sitio web (Host).</p>
+    <p>Si el host no es el mismo al nuestro, el Redirect no es valido y devolvera un error en el sitio web.</p>
+    
+    <p>Intenta ingresar una url (incluso las de esta lista) manualmente desde el navegador usando el siguiente template:</p>
+    <pre>
+
+https://@(Context.Request.Host)/Home/RedirectWithMoreMitigation?site={Your_Site_Here}
+
+</pre>
+</div>
+
+<div class="row">
+    <ul>
+        <li><a asp-controller="Home" asp-action="RedirectWithMoreMitigation" asp-route-site="https://megsoftconsulting.com/">Megsoft's Site</a></li>
+        <li><a asp-controller="Home" asp-action="RedirectWithMoreMitigation" asp-route-site="https://cdc.dev/">Caribbean Developers Conference</a></li>
+        <li><a asp-controller="Home" asp-action="RedirectWithMoreMitigation" asp-route-site="https://docs.microsoft.com/">Microsoft's Documentation</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <p><i>Nota: para efectos de este lab, no estamos definiendo un Custom Error y únicamente estamos mostrando <code>/Home/Error</code></i></p>
+</div>

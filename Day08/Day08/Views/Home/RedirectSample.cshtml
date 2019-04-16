@@ -1,0 +1,30 @@
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Links";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <p>En este ejemplo, tenemos 3 links los cuales pasan por una página de Redirect. 
+        Al no poder validar Redirects, un atacante puede usar nuestro sitio web como punto de entrada para redirigir al usuario a donde desee.</p>
+</div>
+
+<div class="row">
+    <ul>
+        <li><a asp-controller="Home" asp-action="RedirectUrl" asp-route-site="https://megsoftconsulting.com/">Megsoft's Site</a></li>
+        <li><a asp-controller="Home" asp-action="RedirectUrl" asp-route-site="https://cdc.dev/">Caribbean Developers Conference</a></li>
+        <li><a asp-controller="Home" asp-action="RedirectUrl" asp-route-site="https://docs.microsoft.com/">Microsoft's Documentation</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <p>Caso practico: El atcante envia un vinculo haciendose pasar por nosotros (phishing) el cual redirige al usuario a descargar un malware.</p>
+    <p>Usa la siguiente URL para hacer uso del Redirect de este sitio como launchpad para descargar un programa (estas a salvo, uniscamente es un software de Microsoft)</p>
+    <pre>
+
+https://@Context.Request.Host@Url.Action("RedirectUrl")?site=https%3A%2F%2Fdownload.microsoft.com%2Fdownload%2F9%2FA%2F8%2F9A8FCFAA-78A0-49F5-8C8E-4EAE185F515C%2FWindows6.1-KB917607-x86.msu
+
+</pre>
+    <p>En un caso de phishing, la URL que el atacante usaria podria llevar a <code>evilsite.com/malware.exe</code> de manera oculta (encoded).</p>
+</div>

@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Redireccionando";
+}
+<h3>@ViewData["Title"]</h3>
+
+<p>Estas abandonando el sitio ...</p>
+
+
+
+@section Scripts
+{
+    <script>
+        window.location.replace("@ViewData["url"]");
+    </script>
+}

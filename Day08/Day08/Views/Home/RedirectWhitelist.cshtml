@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Links";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <p>En este ejemplo, tenemos 3 links los cuales pasan por una página de Redirect. 
+        En este caso, antes de realizar un redirect, consultaremos un listado de sitios web en una base de datos para verificar si la URL es valida.</p>
+</div>
+
+<div class="row">
+    <ul>
+        <li><a asp-controller="Home" asp-action="RedirectWithWhiteList" asp-route-site="https://megsoftconsulting.com/">Megsoft's Site</a></li>
+        <li><a asp-controller="Home" asp-action="RedirectWithWhiteList" asp-route-site="https://cdc.dev/">Caribbean Developers Conference</a></li>
+        <li><a asp-controller="Home" asp-action="RedirectWithWhiteList" asp-route-site="https://docs.microsoft.com/">Microsoft's Documentation</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <p>Vuelve a utilizar la misma URL del atacante para verificar que la url del "Malware" no es valida</p>
+    <pre>
+
+https://@Context.Request.Host@Url.Action("RedirectWithWhiteList")?site=https%3A%2F%2Fdownload.microsoft.com%2Fdownload%2F9%2FA%2F8%2F9A8FCFAA-78A0-49F5-8C8E-4EAE185F515C%2FWindows6.1-KB917607-x86.msu
+
+</pre>
+    <p>Mientras que esto es una solución válida, imaginate que nuestro sitio web contenga muchos links. 
+        Este proceso puede complicarse con el tiempo; es por esto que muchos sitios web consideran esta amenaza "de bajo riesgo".</p>
+</div>
+
+<div class="row">
+    <p><i>Nota: para efectos de este lab, no estamos definiendo un Custom Error y únicamente estamos mostrando <code>/Home/Error</code></i></p>
+</div>

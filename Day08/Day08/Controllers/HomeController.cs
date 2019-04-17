@@ -68,7 +68,7 @@ namespace Day08.Controllers
             
                 // Check if the Referer URL is coming from the out Host, otherwise, return Error action
                 var referrerUrl = new Uri(referrer);
-                if (referrerUrl.Host != Request.Host.ToString())
+                if (referrerUrl.Host != Request.Host.Host)
                     return RedirectToAction("Error", new { message = $"Referer = {referrerUrl.ToString()}; Host: {Request.Host.ToString()}; Referer Host: {referrerUrl.Host}"});
             
                 // Check if the URL is on the whitelist, otherwise, return Error action
